@@ -30,15 +30,17 @@
 ;; This packages  provides a  minor mode that  saves and  restores the
 ;; horizontal scroll position of pages of a PDF document.
 
-(defvar pdf-view-save-hscroll-directory (expand-file-name "pdf-view-save-hscroll" user-emacs-directory))
-(defvar pdf-view-save-hscroll-file (expand-file-name "hscroll-table" pdf-view-save-hscroll-directory))
+(defvar pdf-view-save-hscroll-directory (expand-file-name "pdf-view-save-hscroll" user-emacs-directory)
+  "Directory where the hscroll file is stored")
+(defvar pdf-view-save-hscroll-file (expand-file-name "hscroll-table" pdf-view-save-hscroll-directory)
+  "File where the hscroll table is stored")
 
 (defvar pdf-view-save-hscroll-table nil
   "Table that stores  the hscroll values. For each key  (the document name)
-the value should be a hash table (page as key and hscroll as value).")
+the value should be a hash table (page as the key and hscroll as the value).")
 
 (defun pdf-view-save-hscroll-table-to-file ()
- "Save the content of `pdf-view-save-hscroll-table' to the file specified by `pdf-view-save-hscroll-file'" 
+  "Save the content of `pdf-view-save-hscroll-table' to the file specified by `pdf-view-save-hscroll-file'" 
   (with-temp-file pdf-view-save-hscroll-file
     (prin1 pdf-view-save-hscroll-table (current-buffer))))
 
